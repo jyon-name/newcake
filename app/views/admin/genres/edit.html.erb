@@ -1,0 +1,15 @@
+edit.html.erb
+
+<div class="container">
+	<div class="row">
+	 <%= form_for @gen,url: admin_genre_path do |f| %>
+	 <%= f.text_field :name %>
+	 <%= f.radio_button :is_vaild , :exit  %>
+	 <%= f.label :有効 %>
+	 <%= f.radio_button :is_vaild , :not_exit %>
+	 <%= f.label :無効 %>
+	 <%= f.submit :create,class:"btn" %>
+	 
+	 <% end %>
+	</div>
+	</div>

@@ -1,0 +1,32 @@
+index.html.erb
+<div class="container">
+	<table class="table table-borderd">
+		<caption>table title and/or explanatory text</caption>
+		<thead>
+			<tr>
+				<th>注文日</th>
+				<th>制作状況</th>
+				<th>支払い方法</th>
+				<th>配送先</th>
+				<th></th>
+			</tr>
+		</thead>
+	<% @orders.each do |f| %>
+	<tbody>
+		<tr>
+				<td><%= f.created_at %></td>
+				<td><%= f.order_status_i18n %></td>
+				<td><%= f.paying_method_i18n %></td>
+				<td>〒<%= f.add_number %>住所<%= f.address %></td>
+				<td><%= link_to "詳細",order_path(f.id) %></td>
+			</tr>
+			</tbody>
+	</table>
+
+	
+	
+	
+	
+	<% end %>
+	
+</div>

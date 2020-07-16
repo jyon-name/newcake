@@ -1,0 +1,8 @@
+
+
+ja:
+  enums:
+    end_user:
+      is_vaild:
+        not_exit: 退会ずみ
+        exit: 有効

@@ -1,0 +1,56 @@
+edit.html.erb
+
+<h2>Sign up</h2>
+
+<%= form_for(@user,url: end_users_path) do |f| %>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+        <tr>
+          <td>名前</td>
+          <td><%= f.label :first_name, "(姓)", class: "customer_name" %> <%= f.text_field :first_name %></td>
+          <td><%= f.label :last_name, "(名)", class: "customer_name" %> <%= f.text_field :last_name %></td>
+        </tr>
+        <tr>
+          <td>フリガナ</td>
+          <td><%= f.label :first_name_kana, "(セイ)" %> <%= f.text_field :first_name_kana %></td>
+          <td><%= f.label :last_name_kana, "(メイ)" %> <%= f.text_field :last_name_kana %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :email, "メールアドレス" %></td>
+          <td colspan="2"><%= f.email_field :email, autocomplete: "email" %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :add_code, "郵便番号(ハイフンなし7桁)" %></td>
+          <td colspan="2"><%= f.text_field :add_code, class: "jpostal_code" %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :address, "住所(郵便番号から自動入力)" %></td>
+          <td colspan="2"><%= f.text_field :address, class: "jpostal_address" %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :phone_number, "電話番号" %></td>
+          <td colspan="2"><%= f.text_field :phone_number %></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td colspan="2"><%= f.submit "更新", class: "btn btn-success" %></td>
+        </tr>
+      </tbody>
+
+    </tr>
+  </tbody>
+</table>
+<h3>
+
+    <%= link_to "退会する", confirm_path,method: :get , class: "btn btn-success ml2" %>
+    
+  </h3>
+<% end %>

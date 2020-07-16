@@ -1,0 +1,77 @@
+confirm.html.erb
+
+<div class="container">
+<h3>注文情報確認</h3>
+<%= form_with model:@order, url: orders_path, method: :post, local:true,data: { confirm: 'ご購入を確定しますか？' } do |f|%>
+<table class='table table-bordered'>
+    <thead>
+    <tr>
+      <th class="col-xs-5">商品名</th>
+      <th class="col-xs-2">単価</th>
+      <th class="col-xs-2">数量</th>
+      <th class="col-xs-2">小計(税込)</th>
+    </tr>
+    </thead>
+
+  <tbody>
+
+<% current_end_user.cart_items.each do |itm| %>
+<tr>
+<td style="font-size: 20px; "><%= attachment_image_tag itm.item, :image ,size:"100x50", format: "jpg", fallback:"no_image.jpg" %><%= itm.item.name %></td>
+ <td><%= itm.item.no_tax_price  %></td>
+  <td><%= itm.amount %><%#= f.submit :変更 %></td>
+ <td><%= itm.sub_total.round %></td>
+
+ </tr>
+<% end %>
+</tbody>
+</table>
+
+
+<table class="table">
+  <tbody>
+    <tr>
+      <td class="col-xs-7"style="border-top: 0px none;"></td>
+      <td class="table-bordered">送料</td>
+      <td class="table-bordered"><%= @postage %>円</td>
+    </tr>
+  </tbody>
+</table>
+<table class="table">
+  <tbody>
+    <td class="col-xs-7"style="border-top: 0px none;"></td>
+      <td class="table-bordered">商品合計</td>
+      <td class="table-bordered"><%= @sum.round %>円</td>
+  </tbody>
+</table>
+<table class="table">
+  <tbody>
+    <td class="col-xs-7"style="border-top: 0px none;"></td>
+      <td class="table-bordered">お支払い金額</td>
+      <td class="table-bordered"><%= @total.round %>円</td>
+
+  </tbody>
+</table>
+<%#= binding.pry %>
+<div class="row">
+  <h3>支払い方法</h3>
+<%= @order.paying_method_i18n %>
+<%= f.hidden_field :paying_method,value: @order.paying_method %>
+<%= f.hidden_field :paying_sum,value: @total %>
+<%= f.hidden_field :postage, value: @postage %>
+<h3>お届け先</h3>
+<%= @order.address %>
+<%= f.hidden_field :address,value: @order.address%>
+<%= @order.add_number %>
+<%= f.hidden_field :add_number,value: @order.add_number %>
+<%= @order.name %>
+<%= f.hidden_field :name,value: @order.name%>
+<%= f.hidden_field :addd,value: params[:order][:add] %>
+</div>
+<% if @sum != 0.to_i %>
+<%= f.submit "注文確定"%>
+
+<% end %>
+<% end %>
+</div>
+

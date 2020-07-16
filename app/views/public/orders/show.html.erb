@@ -1,0 +1,9 @@
+show.html.erb
+<div class="container">
+	<% @order.order_details.each do |f| %>
+	<% binding.pry %>
+	<%= f.item.name  %>
+	<%= f.order.end_user.id %>
+	<% end %>
+	
+</div>

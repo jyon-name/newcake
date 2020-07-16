@@ -1,0 +1,37 @@
+index.html.erb
+<div class="container">
+	<div class="row">
+		<%= link_to "＋",new_admin_item_path,class:"new_admin_item" %>
+	</div>
+	<div class="row">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>商品id</th>
+					<th>商品名</th>
+					<th>税抜き価格</th>
+					<th>ジャンル</th>
+					<th>ステータス</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @items.each do |itm| %>
+				<tr>
+					<td><%= itm.id %></td>
+					<td><%= itm.name %></td>
+					<td><%= itm.no_tax_price %></td>
+					<td><%= itm.genre.name %></td>
+					<td><% if itm.is_sale == true%>
+						販売中
+						<% else %>
+						販売中止
+						<% end %>
+					</td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+		
+	</div>
+	
+</div>

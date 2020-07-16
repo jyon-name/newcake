@@ -1,0 +1,43 @@
+new.html.erb
+<div class="container">
+	<%= form_with(model:@order, url: order_confirm_path,method: :post,local: true) do |f| %>
+	<div class="row">
+	<h2>支払い方法</h2>
+		<%= f.radio_button :paying_method, :cash , {:checked => true}%>
+		<%= f.label :現金 %>
+		<%= f.radio_button :paying_method, :credit %>
+		<%= f.label :クレジットカード %>
+		<%= f.radio_button :paying_method, :bank_cash %>
+		<%= f.label :銀行振り込み %>
+	</div>
+	<div class="row">
+		<h2>配送先</h2>
+	</div>
+		<%= f.radio_button :add, "0" , {:checked => true}%>
+    	<%= f.label :ご自身の住所, class: "job_type_label" %>
+    	<div>
+		<span><%= current_end_user.add_code %></>
+		<span><%=current_end_user.address %></span>
+		<span><%= current_end_user.first_name %></span>
+		<span><%= current_end_user.last_name %></span>
+		</div>
+		<% if current_end_user.addresses.present? %>
+    	<%= f.radio_button :add, "1" %>
+    	<%= f.label :登録済みの住所, class: "job_type_label" %>
+    	<%#= f.collection_select :id ,current_end_user.addresses,:id ,:finally_address %>
+    	<%= f.collection_select :address_p, current_end_user.addresses, :id, :finally_address %>
+    	<%#= select_tag :addd, options_from_collection_for_select(current_end_user.addresses, :id, :finally_address), {prompt: 'タグで絞り込み',}%>
+    	<% end %>
+    	<div>
+    	<%= f.radio_button :add ,"2" %>
+    	<%= f.label :新規配送先, class: "job_type_label" %>
+    	</div>
+    	<div>
+    	<span><%= f.label :郵便番号 %><%= f.text_field :add_code ,class:"jpostal_code"%></span>
+		<span><%= f.label :配送先住所 %><%= f.text_field :address,class:"jpostal_address"%></span>
+		<span><%= f.label :あてな %><%= f.text_field :name %></span>
+
+    	</div>
+    	<%= f.submit "確認画面に進む", class: "btn btn-primary m-auto" %>
+	<% end %>
+</div>

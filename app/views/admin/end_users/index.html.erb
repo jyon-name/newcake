@@ -1,0 +1,27 @@
+index.html.erb
+
+<div class="container">
+	<div class="row">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>氏名</th>
+					<th>メールアドレス</th>
+					<th>ステータス</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @users.each do |user| %>
+				<tr>
+					<td><%= user.id %></td>
+					<td><%= user.first_name %><%= user.last_name %></td>
+					<td><%= user.email %></td>
+					<td><%= user.is_vaild_i18n %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+	
+</div>
