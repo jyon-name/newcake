@@ -4,6 +4,35 @@ index.html.erb
 	
 
  	<div class="row">
+ 		<div style="margin-top:80px;"></div>
+ 		<div class="col-xs-3">
+ 			
+
+	<table class='table table-bordered'>
+		<thead>
+
+
+		<tr>
+			<th>ジャンル検索</th>
+
+		</tr>
+		<tr>
+		</tr>
+		</thead>
+		<tbody>
+			<tr>
+			<% @genres.each do |gnr| %>
+		
+			<% if gnr.is_vaild == "exit" %>
+				<td><%= link_to gnr.name,genre_path(gnr.id),class:"ppc" %></td>
+					<% end %>
+		</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+	<div class="col-xs-9">
+	
 		<table class="table">
 			<thead>
 				<tr>

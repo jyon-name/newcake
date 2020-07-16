@@ -29,7 +29,7 @@ class Public::OrdersController < ApplicationController
 			@order.add_number = @ord.add_code
 			@order.name = @ord.name
 		elsif params[:order][:add] == "2"
-			if (params[:order][:address] == ""|| params[:order][:name] == "" || params[:order][:add_code] == "")
+			if (params[:order][:address] == ""|| params[:order][:name] == "" || params[:order][:add_number] == "")
 				redirect_to request.referer
 			end
 		end
