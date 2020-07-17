@@ -37,6 +37,8 @@ end
   resources :genres,only: [:index,:edit,:create,:update]
   resources :items
   resources :orders
+  resources :order_details ,only: [:update]
+    patch "orders_details/all_up", to: "order_details#all_up",as: "all_up"
 end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

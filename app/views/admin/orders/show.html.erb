@@ -1,0 +1,66 @@
+
+<div class="container">
+	<div class="row">
+		<h4>購入者</h4>
+		<span><%= (@order.end_user.first_name + @order.end_user.last_name) %></span>
+		<h4>配送先</h4>
+	<span> 📮<%= @add %></span>
+	<div>
+		<h4>受取人</h4>
+			<span><%= @order.name %></span>
+		<h4>支払い方法</h4>
+			<%= @order.paying_method_i18n %>
+	<h4>注文ステータス</h4>
+		<%= form_for(@order, url: admin_order_path(@order), method: :patch) do |f|%>
+			<%= f.select :order_status, Order.order_statuses.keys.map{|k| [I18n.t("enums.order.order_status.#{k}"),k]}%>
+			<%= f.submit :更新 %>
+		<% end %>
+	</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-9">
+		<table class="table table-borderd">
+			<thead>
+				<tr>
+					<th>商品名</th>
+					<th>単価(税込)</th>
+					<th>数量</th>
+					<th>小計</th>
+					<th>制作ステータス</th>
+					<th></th>
+				</tr>
+			</thead>
+		<tbody>
+			<% @order_details.each do |f| %>
+				<tr>
+					<td><%= f.item.name %></td>
+					<td><%= (f.item.no_tax_price * 1.1).round%></td>
+					<td><%= f.amount %></td>
+					<td><%= (f.item.no_tax_price * 1.1 * f.amount).round %></td>
+					<td><%= form_with(model: f, url: admin_order_detail_path(f), method: :patch) do |ft|%>
+						<%= ft.select :cooking_status, OrderDetail.cooking_statuses.keys.map{|k| [I18n.t("enums.order_detail.cooking_status.#{k}"),k]}%>
+						<%= ft.submit :更新 %></td>
+						<% end %>
+				</tr>
+			<% end %>
+		</tbody>
+		</table>
+		</div>
+	</div>
+	<div class="row">
+		<%= link_to "全て製作完了",admin_all_up_path(params: { order: { ord: @order}}) ,method: :patch ,class:"btn btn-primary ja"%>	
+	</div>
+		<div style="margin-top: 30px;">
+		<div class="col-xs-1">
+			<span><strong>商品合計</strong></span>
+			<span style="display: block;"><strong>送料</strong></span>
+			<span><strong>請求金額</strong></span>
+		</div>
+		<div class="col-xs-1">
+			<div><%= @price %>円</div>
+			<div>800円</div>
+			<%= @order.paying_sum %>円
+		</div>
+		</div>
+	</div>
+</div>

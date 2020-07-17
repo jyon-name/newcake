@@ -1,0 +1,39 @@
+<div class="container">
+<table class='table'>
+  <thead>
+    <tr>
+      <th>購入日時</th>
+      <th>購入者氏名</th>
+      <th>注文個数</th>
+      <th>注文ステータス</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+      <tbody>
+        <% @orders.each do |f| %>
+          <tr>
+            <td><%= link_to admin_order_path(f.id) do %>
+              <%= f.created_at.strftime('%Y/%m/%d')%>
+                <% end %>
+              </td>
+
+            <td><%= (f.end_user.first_name + f.end_user.last_name) %></td>
+            
+            <% @allamount = 0 %>
+        <% f.order_details.each do |itm| %>
+          <%  @allamount +=itm.amount %>
+            <% end %>
+            <td><%= @allamount %></td>
+
+            <td>
+            <%= f.order_status_i18n %>
+            </td>
+          </tr>
+
+        <% end %>
+
+     
+
+  </tbody>
+</table>
