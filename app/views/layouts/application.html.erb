@@ -42,7 +42,7 @@
 
         <li><%= link_to '商品一覧',admin_items_path,class: 'glyphicon glyphicon-edit font'%></li>
         <li><%= link_to "会員一覧",admin_end_users_path, class: 'glyphicon glyphicon font' %></li>
-        <li><%= link_to '注文履歴一覧', class: 'glyphicon glyphicon-edit sign_up font' %></li>
+        <li><%= link_to '注文履歴一覧',admin_orders_path, class: 'glyphicon glyphicon-edit sign_up font' %></li>
         <li><%= link_to "ジャンル一覧",admin_genres_path, class: 'glyphicon glyphicon-edit sign_up font'%></li>
         <li><%= link_to"logout",destroy_admin_session_path ,method: :delete,class: "glyphicon glyphicon-share font" %></li>
        
