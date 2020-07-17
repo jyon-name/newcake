@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'genres/show'
+  end
 scope module: 'public' do
   root "items#top"
  resource :end_users,only:[:edit,:update] do
@@ -13,8 +16,9 @@ scope module: 'public' do
     get  "orders/thank"=> "orders#thank",as: "thank"
  resources :orders ,only:[:create,:new,:index,:show]
     post "orders/confirm"=> "orders#confirm",as: "order_confirm"
- resources :cart_items
  resources :addresses ,only: [:index,:show,:edit,:create,:update]
+ resources :cart_items,only: [:index,:create,:update,:destory]
+ resources :genres,only: [:show]
 end
  devise_for :end_users ,controllers: {
     sessions: "public/sessions",

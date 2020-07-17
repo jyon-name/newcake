@@ -60,10 +60,11 @@ confirm.html.erb
 <%= f.hidden_field :paying_sum,value: @total %>
 <%= f.hidden_field :postage, value: @postage %>
 <h3>お届け先</h3>
+📮<%= @order.add_number %>
+<%= f.hidden_field :add_number,value: @order.add_number %>
 <%= @order.address %>
 <%= f.hidden_field :address,value: @order.address%>
-<%= @order.add_number %>
-<%= f.hidden_field :add_number,value: @order.add_number %>
+
 <%= @order.name %>
 <%= f.hidden_field :name,value: @order.name%>
 <%= f.hidden_field :addd,value: params[:order][:add] %>
