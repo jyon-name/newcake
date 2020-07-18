@@ -12,7 +12,8 @@
 			<%= @order.paying_method_i18n %>
 	<h4>注文ステータス</h4>
 		<%= form_for(@order, url: admin_order_path(@order), method: :patch) do |f|%>
-			<%= f.select :order_status, Order.order_statuses.keys.map{|k| [I18n.t("enums.order.order_status.#{k}"),k]}%>
+			<%#= f.select :order_status, Order.order_statuses.keys.map{|k| [I18n.t("enums.order.order_status.#{k}"),k]}%>
+			<%= f.select :order_status, Order.order_statuses.keys.to_a%>
 			<%= f.submit :更新 %>
 		<% end %>
 	</div>
@@ -37,7 +38,7 @@
 					<td><%= (f.item.no_tax_price * 1.1).round%></td>
 					<td><%= f.amount %></td>
 					<td><%= (f.item.no_tax_price * 1.1 * f.amount).round %></td>
-					<td><%= form_with(model: f, url: admin_order_detail_path(f), method: :patch) do |ft|%>
+					<td><%= form_with(model: f, url: admin_order_detail_path(f), method: :patch,local: true) do |ft|%>
 						<%= ft.select :cooking_status, OrderDetail.cooking_statuses.keys.map{|k| [I18n.t("enums.order_detail.cooking_status.#{k}"),k]}%>
 						<%= ft.submit :更新 %></td>
 						<% end %>
