@@ -12,7 +12,7 @@ class Admin::OrdersController < ApplicationController
 		@order =Order.find(params[:id])
 		@order.update(order_params)
 		if @order.order_status == "recieving"
-			binding.pry
+			# binding.pry
 			@order.order_details.each do |order_detail|
 				order_detail.update(cooking_status: "wait")
 			end
