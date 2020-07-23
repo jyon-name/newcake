@@ -2,11 +2,12 @@ class Admin::OrderDetailsController < ApplicationController
 	def update
 		@order_detail =OrderDetail.find(params[:id])
 		@order_detail.update(ord_deta_params)
+		@ord =@order_detail.order
 			if @order_detail.cooking_status == "cooking"
-				@order_detail.order.update(order_status: "making")
+				@ord.update(order_status: "making")
 			end
-			if @order_details.where(cooking_status: "cooked").count == @order_details.count
-				@order.update(order_status: "preparation")
+			if @ord.order_details.where(cooking_status: "cooked").count == @ord.order_details.count
+				@ord.update(order_status: "preparation")
 			end
 		redirect_to request.referer
 	end
