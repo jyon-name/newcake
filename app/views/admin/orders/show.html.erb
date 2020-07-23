@@ -12,8 +12,8 @@
 			<%= @order.paying_method_i18n %>
 	<h4>注文ステータス</h4>
 		<%= form_for(@order, url: admin_order_path(@order), method: :patch) do |f|%>
-			<%#= f.select :order_status, Order.order_statuses.keys.map{|k| [I18n.t("enums.order.order_status.#{k}"),k]}%>
-			<%= f.select :order_status, Order.order_statuses.keys.to_a%>
+			<%= f.select :order_status, Order.order_statuses.keys.map{|k| [I18n.t("enums.order.order_status.#{k}"),k]}%>
+			<%#= f.select :order_status, Order.order_statuses.keys.to_a%>
 			<%= f.submit :更新 %>
 		<% end %>
 	</div>
