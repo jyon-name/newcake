@@ -8,7 +8,6 @@ class Public::OrdersController < ApplicationController
 		end
 	end
 	def confirm
-		binding.pry
 		@postage = 800.to_i
 		@sum = 0.to_i
 		current_end_user.cart_items.each do |f|
@@ -38,7 +37,6 @@ class Public::OrdersController < ApplicationController
 		@order =Order.new(order_params)
 		@order.end_user_id =current_end_user.id
 		@order.save
-		# binding.pry
 		if params[:order][:addd] == "2"
 			add =Address.new
 			add.end_user_id =current_end_user.id
@@ -47,19 +45,20 @@ class Public::OrdersController < ApplicationController
 			add.name = @order.name
 			add.save
 		end
-		current_end_user.cart_items.each do |f|
-		 order_detail =OrderDetail.new
-		 order_detail.item_id = f.item_id
-		 order_detail.order_id = @order.id
-		 order_detail.amount =f.amount
-		 # binding.pry
-		 order_detail.tax_price =(f.item.no_tax_price*1.1).round
-		 order_detail.save
-		end
+			current_end_user.cart_items.each do |f|
+				order_detail =OrderDetail.new
+				order_detail.item_id = f.item_id
+				order_detail.order_id = @order.id
+				order_detail.amount =f.amount
+				order_detail.tax_price =(f.item.no_tax_price*1.1).round
+				order_detail.save
+			end
 		current_end_user.cart_items.destroy_all
 		redirect_to thank_path
 	end
 	def thank
+	end
+	def error
 	end
 	def index
 		@orders =current_end_user.order
