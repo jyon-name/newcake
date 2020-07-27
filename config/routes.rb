@@ -14,8 +14,9 @@ scope module: 'public' do
     delete "cart_items/destroy_all" => "cart_items#destroy_all", as: "destroy_all"
  resources :items,only: [:index,:show]
     get  "orders/thank"=> "orders#thank",as: "thank"
- resources :orders ,only:[:create,:new,:index,:show]
+    get "orders/confirm" => "orders#error"
     post "orders/confirm"=> "orders#confirm",as: "order_confirm"
+ resources :orders ,only:[:create,:new,:index,:show]
  resources :addresses ,only: [:index,:show,:edit,:create,:update]
  resources :cart_items,only: [:index,:create,:update,:destory]
  resources :genres,only: [:show]
