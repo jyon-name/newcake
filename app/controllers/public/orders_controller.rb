@@ -8,12 +8,17 @@ class Public::OrdersController < ApplicationController
 		end
 	end
 	def confirm
+<<<<<<< HEAD
+		# binding.pry
+=======
+>>>>>>> 5fb3dc508d861785c7b60adedaae1d8c50cb2019
 		@postage = 800.to_i
 		@sum = 0.to_i
 		current_end_user.cart_items.each do |f|
 			@sum += (f.item.no_tax_price * f.amount.to_i * 1.1)
 		end
 		@total = @postage + @sum
+		binding.pry
 	    @order =Order.new(order_params)
 		if params[:order][:add] == "0"
 			@order.address =current_end_user.address
