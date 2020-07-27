@@ -1,9 +1,21 @@
 show.html.erb
 <div class="container">
-	<% @order.order_details.each do |f| %>
-	<% binding.pry %>
+	<table>
+		<thead>
+			<tr>
+				<th>商品名</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+		<% @order.order_details.each do |f| %>
+			<tr>
+				<td><%= f.item.name  %></td>
+			</tr>
+		</tbody>
+	</table>
+	<%# binding.pry %>
 	<%= f.item.name  %>
-	<%= f.order.end_user.id %>
+	<%#= f.order.end_user.id %>
 	<% end %>
-	
 </div>
