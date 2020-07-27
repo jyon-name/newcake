@@ -14,6 +14,7 @@ class Public::OrdersController < ApplicationController
 			@sum += (f.item.no_tax_price * f.amount.to_i * 1.1)
 		end
 		@total = @postage + @sum
+		binding.pry
 	    @order =Order.new(order_params)
 		if params[:order][:add] == "0"
 			@order.address =current_end_user.address
