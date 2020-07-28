@@ -1,6 +1,18 @@
 # frozen_string_literal: true
 
 class Public::PasswordsController < Devise::PasswordsController
+
+
+  prepend_before_action :require_no_authentication
+  # Render the #edit only if coming from a reset password email link
+  append_before_action :assert_reset_token_passed, only: :edit
+# GET /resource/password/edit?reset_password_token=abcdef
+  def edit
+    self.resource = resource_class.new
+    set_minimum_password_length
+    resource.reset_password_token = params[:reset_password_token]
+  end
+end
   # GET /resource/password/new
   # def new
   #   super
@@ -33,4 +45,3 @@ class Public::PasswordsController < Devise::PasswordsController
   # def after_sending_reset_password_instructions_path_for(resource_name)
   #   super(resource_name)
   # end
-end
