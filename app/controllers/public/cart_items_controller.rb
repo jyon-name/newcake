@@ -14,8 +14,8 @@ class Public::CartItemsController < ApplicationController
       amount = cart.amount + params[:cart_item][:amount].to_i
       cart.update(amount: amount)
     else
-  	cart_item =current_end_user.cart_items.new(cart_params)
-  	cart_item.save
+      cart_item =current_end_user.cart_items.new(cart_params)
+      cart_item.save
     end
     redirect_to cart_items_path
   end
@@ -34,14 +34,14 @@ class Public::CartItemsController < ApplicationController
   def destroy_all
     @cart = current_end_user.cart_items.all
     @cart.destroy_all
-  redirect_to cart_items_path
+    redirect_to cart_items_path
   end
 
   protected
   def cart_params
-  params.require(:cart_item).permit(:amount,:item_id)
- end
- def set_cart_item
-  @cart = current_end_user.cart_items.find_by(item_id: params[:cart_item][:item_id]).present?
+    params.require(:cart_item).permit(:amount,:item_id)
+  end
+  def set_cart_item
+    @cart = current_end_user.cart_items.find_by(item_id: params[:cart_item][:item_id]).present?
  end
 end

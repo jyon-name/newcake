@@ -17,10 +17,10 @@ class Admin::OrderDetailsController < ApplicationController
 			@order_details.each do |order_detail|
 				order_detail.cooking_status = "cooked"
 				order_detail.update(cooking_status: "cooked")
-	end
-	if @order_details.where(cooking_status: "cooked").count == @order_details.count
-		@order.update(order_status: "preparation")
-	end
+			end
+		if @order_details.where(cooking_status: "cooked").count == @order_details.count
+			@order.update(order_status: "preparation")
+		end
 		redirect_to admin_order_path(@order)
 	end
 	private

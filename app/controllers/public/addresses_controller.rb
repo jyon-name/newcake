@@ -3,9 +3,7 @@ class Public::AddressesController < ApplicationController
   	@address =Address.new
   end
   def create
-
   	@address =Address.new(add_params)
-  	 	# binding.pry
   	@address.save
   	redirect_to addresses_path
   end
