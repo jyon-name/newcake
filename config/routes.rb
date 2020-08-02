@@ -1,11 +1,6 @@
 Rails.application.routes.draw do
 scope module: 'public' do
   root "items#top"
- devise_for :end_users ,controllers: {
-    sessions: "sessions",
-    registrations: 'registrations',
-    password: "passwords",
-  }
     resource :end_users,only:[:edit,:update]
     get "end_users/about" =>"end_users#about" ,as: "about"
     get "end_users/confirm" => "end_users#confirm",as: "confirm"
@@ -21,6 +16,11 @@ scope module: 'public' do
  resources :cart_items,only: [:index,:create,:update,:destory]
  resources :genres,only: [:show]
 end
+ devise_for :end_users ,controllers: {
+    sessions: "public/sessions",
+    registrations: 'public/registrations',
+    password: "public/passwords",
+  }
   devise_for :admin, controllers: {
     sessions: 'admin/sessions',
   }

@@ -39,6 +39,16 @@ edit.html.erb
           <td><%= f.label :phone_number, "電話番号" %></td>
           <td colspan="2"><%= f.text_field :phone_number %></td>
         </tr>
+          <div class="field">
+    <%= f.label :password, "New password" %><br />
+    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation, "Confirm new password" %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
         <tr>
           <td></td>
           <td colspan="2"><%= f.submit "更新", class: "btn btn-success" %></td>
