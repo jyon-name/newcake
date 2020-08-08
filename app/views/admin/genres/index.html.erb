@@ -10,7 +10,6 @@ index.html.er
 	 <%#= f.select :is_vaild, Genre.is_vailds.keys.map{|k| [I18n.t("enums.genre.is_vaild.#{k}"),k]}%>
 	 <%= f.select :is_vaild,[["有効","exit"],["無効","not_exit"]] %>
 	 <%= f.submit :create,class:"btn" %>
-	 
 	 <% end %>
 	</div>
 	<div class="row col-xs-10">

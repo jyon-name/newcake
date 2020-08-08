@@ -6,5 +6,10 @@ class Order < ApplicationRecord
 	validates :add_number, presence: true,length: {maximum: 7,minimum: 7}
  	validates :address, presence: true
  	validates :name, presence: true
-
+	def plus
+    allamount = 0
+      self.order_details.each do |itm|
+		allamount +=itm.amount
+      end
+	end
 end
