@@ -1,4 +1,4 @@
-new.html.erb
+
 <div class="container">
 	<%= form_with(model:@order, url: order_confirm_path,method: :post,local: true) do |f| %>
 	<div class="row">
@@ -26,7 +26,7 @@ new.html.erb
     	<%= f.radio_button :add, "1" %>
     	<%= f.label :登録済みの住所, class: "job_type_label" %>
     	<%#= f.collection_select :id ,current_end_user.addresses,:id ,:finally_address %>
-    	<%= f.collection_select :address_p, current_end_user.addresses, :id, :finally_address %>
+    	<%= f.collection_select :address_p, current_end_user.addresses, :id, :finally_address ,{disabled: true},{prompt: '配送先をお選びください',}%>
     	<%#= select_tag :addd, options_from_collection_for_select(current_end_user.addresses, :id, :finally_address), {prompt: 'タグで絞り込み',}%>
     	<% end %>
     	<div>

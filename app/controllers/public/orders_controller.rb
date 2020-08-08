@@ -8,6 +8,7 @@ class Public::OrdersController < ApplicationController
 		end
 	end
 	def confirm
+
 		@postage = 800.to_i
 		@sum = 0.to_i
 		current_end_user.cart_items.each do |f|

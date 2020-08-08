@@ -23,6 +23,6 @@ end
 
 private
 def user_params
- params.require(:end_user).permit(:email, :last_name,:first_name, :last_name_kana, :first_name_kana, :is_vaild, :add_code, :address,:phone_number )
+ params.require(:end_user).permit(:email, :last_name,:first_name, :last_name_kana, :first_name_kana, :is_vaild, :add_code, :address,:phone_number,:password,:password_confirmation)
 end
 end

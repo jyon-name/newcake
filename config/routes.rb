@@ -1,12 +1,7 @@
 Rails.application.routes.draw do
-  namespace :public do
-    get 'genres/show'
-  end
 scope module: 'public' do
   root "items#top"
- resource :end_users,only:[:edit,:update] do
-   resource :passwords, only: [:edit, :update]
- end
+    resource :end_users,only:[:edit,:update]
     get "end_users/about" =>"end_users#about" ,as: "about"
     get "end_users/confirm" => "end_users#confirm",as: "confirm"
     patch "end_users/withdraw" => "end_users#withdraw",as: "withdraw"
@@ -26,12 +21,9 @@ end
     registrations: 'public/registrations',
     password: "public/passwords",
   }
-
   devise_for :admin, controllers: {
     sessions: 'admin/sessions',
   }
-
- 
  namespace :admin do
   get 'top' => "homes"
   resources :end_users,only: [:index]
